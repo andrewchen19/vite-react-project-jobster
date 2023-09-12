@@ -4,7 +4,7 @@ import NavLinks from "./NavLinks";
 
 const BigSidebar = () => {
   const { isSidebarOpen } = useSelector((store) => store.user);
-  console.log(isSidebarOpen);
+  // console.log(isSidebarOpen);
 
   return (
     <aside className="hidden lg:block bg-gray-50">
@@ -17,7 +17,7 @@ const BigSidebar = () => {
         {/* content */}
         <div className="p-4">
           <header>
-            <Logo imgSize="8" textSize="3xl" />
+            <Logo imgSize="h-8 w-8" textSize="3xl" />
           </header>
           {/* links */}
           <div className="mt-6">

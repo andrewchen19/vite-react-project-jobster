@@ -5,6 +5,9 @@ import SubmitBtn from "./SubmitBtn";
 import Navbar from "./Navbar";
 import BigSidebar from "./BigSideBar";
 import SmallSidebar from "./SmallSideBar";
+import ProfileFilter from "./ProfileFilter";
+import FormSelect from "./FormSelect";
+import AddJobFilter from "./AddJobFilter";
 
 export {
   Logo,
@@ -14,4 +17,7 @@ export {
   Navbar,
   BigSidebar,
   SmallSidebar,
+  ProfileFilter,
+  FormSelect,
+  AddJobFilter,
 };

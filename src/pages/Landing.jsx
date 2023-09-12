@@ -6,7 +6,7 @@ const Landing = () => {
   return (
     <main className="min-h-screen">
       <nav className="align-element py-6 flex space-x-4 items-center">
-        <Logo imgSize="12" textSize="4xl" />
+        <Logo imgSize="h-12 w-12" textSize="4xl" />
       </nav>
       <div className="pt-12">
         <div className="align-element grid items-center lg:grid-cols-2 lg:gap-x-8">

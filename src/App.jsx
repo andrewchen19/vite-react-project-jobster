@@ -3,6 +3,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import {
   AddJob,
   AllJobs,
+  EditJob,
   Error,
   Landing,
   Layout,
@@ -27,9 +28,14 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 // loaders
 import { loader as statsLoader } from "./pages/Stats";
+import { loader as profileLoader } from "./pages/Profile";
+import { loader as addJobLoader } from "./pages/AddJob";
 // actions
 import { action as registerAction } from "./pages/Register";
 import { action as loginAction } from "./pages/Login";
+import { action as profileAction } from "./components/ProfileFilter";
+import { action as addJobAction } from "./components/AddJobFilter";
+
 // store
 import { store } from "./store";
 
@@ -43,7 +49,7 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <Stats />,
-        // errorElement: <SingleError />,
+        errorElement: <SingleError />,
         loader: statsLoader(store),
       },
       {
@@ -51,12 +57,20 @@ const router = createBrowserRouter([
         element: <AllJobs />,
       },
       {
+        path: "/edit-job/:id",
+        element: <EditJob />,
+      },
+      {
         path: "/add-job",
         element: <AddJob />,
+        loader: addJobLoader(store),
+        action: addJobAction(store),
       },
       {
         path: "/profile",
         element: <Profile />,
+        loader: profileLoader(store),
+        action: profileAction(store),
       },
     ],
   },

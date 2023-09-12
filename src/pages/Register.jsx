@@ -40,7 +40,7 @@ const Register = () => {
         className="card w-96 p-8 bg-base-100 shadow-lg flex flex-col gap-y-4"
       >
         <div className="flex justify-center">
-          <Logo imgSize="12" textSize="4xl" />
+          <Logo imgSize="h-12 w-12" textSize="4xl" />
         </div>
 
         <h4 className="mt-4 text-center text-3xl font-bold capitalize">

@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
 
-const getUserFromLocalStorage = () => {
+export const getUserFromLocalStorage = () => {
   return JSON.parse(localStorage.getItem("user")) || null;
 };
 
@@ -30,6 +30,10 @@ const userSlice = createSlice({
     toggleSidebar: (state) => {
       state.isSidebarOpen = !state.isSidebarOpen;
     },
+    editUser: (state, action) => {
+      const updatedUser = action.payload;
+      state.user = updatedUser;
+    },
   },
 });
 
@@ -37,4 +41,5 @@ const userSlice = createSlice({
 // 輸出 slice.reducer
 export default userSlice.reducer;
 // 輸出個別的 reducer
-export const { loginUser, logoutUser, toggleSidebar } = userSlice.actions;
+export const { loginUser, logoutUser, toggleSidebar, editUser } =
+  userSlice.actions;
