@@ -7,7 +7,6 @@ import Layout from "./Layout";
 import Login from "./Login";
 import Profile from "./Profile";
 import Register from "./Register";
-import SingleError from "./SingleError";
 import Stats from "./Stats";
 
 export {
@@ -20,6 +19,5 @@ export {
   Login,
   Profile,
   Register,
-  SingleError,
   Stats,
 };

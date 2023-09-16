@@ -29,7 +29,7 @@ const SmallSidebar = () => {
             <FaTimes />
           </button>
           {/* logo */}
-          <Logo imgSize="10" textSize="2xl" />
+          <Logo imgSize="h-12 w-12" textSize="3xl" />
           {/* links */}
           <div className="mt-6">
             <ul className="menu menu-vertical space-y-4">

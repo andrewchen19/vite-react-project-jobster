@@ -3,13 +3,16 @@ import { HiMiniBars3 } from "react-icons/hi2";
 import { FaUserCircle } from "react-icons/fa";
 import logo from "../assets/images/logo.png";
 import { logoutUser, toggleSidebar } from "../features/user/userSlice";
+import { removeAllJobs } from "../features/allJobs/allJobsSlice";
 import { useNavigate } from "react-router-dom";
+import { useQueryClient } from "@tanstack/react-query";
 
 const Navbar = () => {
   const { user } = useSelector((store) => store.user);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
 
   return (
     <nav className="bg-gray-50">
@@ -57,6 +60,9 @@ const Navbar = () => {
                       className="capitalize hover:bg-transparent hover:text-base-100"
                       onClick={() => {
                         dispatch(logoutUser());
+                        dispatch(removeAllJobs());
+                        // remove all of the queries
+                        queryClient.removeQueries();
                         navigate("/landing");
                       }}
                     >

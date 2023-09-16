@@ -10,7 +10,6 @@ import {
   Login,
   Profile,
   Register,
-  SingleError,
   Stats,
 } from "./pages";
 
@@ -30,11 +29,14 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { loader as statsLoader } from "./pages/Stats";
 import { loader as profileLoader } from "./pages/Profile";
 import { loader as addJobLoader } from "./pages/AddJob";
+import { loader as allJobsLoader } from "./components/AllJobsFilter";
+import { loader as editJobLoader } from "./pages/EditJob";
 // actions
 import { action as registerAction } from "./pages/Register";
 import { action as loginAction } from "./pages/Login";
 import { action as profileAction } from "./components/ProfileFilter";
 import { action as addJobAction } from "./components/AddJobFilter";
+import { action as editJobAction } from "./components/EditJobFilter";
 
 // store
 import { store } from "./store";
@@ -49,22 +51,24 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <Stats />,
-        errorElement: <SingleError />,
-        loader: statsLoader(store),
+        loader: statsLoader(store, queryClient),
       },
       {
         path: "/all-jobs",
         element: <AllJobs />,
+        loader: allJobsLoader(store, queryClient),
       },
       {
         path: "/edit-job/:id",
         element: <EditJob />,
+        loader: editJobLoader(store),
+        action: editJobAction(store, queryClient),
       },
       {
         path: "/add-job",
         element: <AddJob />,
         loader: addJobLoader(store),
-        action: addJobAction(store),
+        action: addJobAction(store, queryClient),
       },
       {
         path: "/profile",

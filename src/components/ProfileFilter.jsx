@@ -1,9 +1,10 @@
 import { Form, redirect } from "react-router-dom";
 import { FormInput, SubmitBtn } from "../components";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { customFetch } from "../utilize";
-import { editUser, logoutUser } from "../features/user/userSlice";
+import { editUser } from "../features/user/userSlice";
 import { toast } from "react-toastify";
+import { updateJobLocation } from "../features/job/jobSlice";
 
 export const action =
   (store) =>
@@ -23,18 +24,18 @@ export const action =
           Authorization: `Bearer ${token} `,
         },
       });
-      //   console.log(response);
+      // console.log(response);
 
       store.dispatch(editUser(response.data.user));
-      toast.success("user updated successfully", {
+      store.dispatch(updateJobLocation());
+      toast.success("user updated", {
         icon: "😎",
       });
 
       return null;
     } catch (error) {
       //   console.log(error);
-      const errorMessage =
-        error?.response?.data?.msg || "There was an error placing your order";
+      const errorMessage = error?.response?.data?.msg || "There was an error";
       toast.error(errorMessage, {
         icon: "😵",
       });

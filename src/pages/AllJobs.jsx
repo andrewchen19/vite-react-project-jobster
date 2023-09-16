@@ -1,7 +1,17 @@
-import React from "react";
+import {
+  AllJobsFilter,
+  AllJobsContainer,
+  ModifiedPaginationContainer,
+} from "../components";
 
 const AllJobs = () => {
-  return <div>AllJobs</div>;
+  return (
+    <>
+      <AllJobsFilter />
+      <AllJobsContainer />
+      <ModifiedPaginationContainer />
+    </>
+  );
 };
 
 export default AllJobs;

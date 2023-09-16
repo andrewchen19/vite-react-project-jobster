@@ -1,20 +1,23 @@
-import { Form, NavLink, redirect } from "react-router-dom";
-import { FormSelect, FormInput, SubmitBtn } from "./index";
 import { useSelector } from "react-redux";
+import { Form, NavLink, redirect, useLoaderData } from "react-router-dom";
+import { FormSelect, FormInput, SubmitBtn } from "./index";
 import { customFetch } from "../utilize";
 import { toast } from "react-toastify";
 
 export const action =
   (store, queryClient) =>
-  async ({ request }) => {
+  async ({ request, params }) => {
     const formData = await request.formData();
     const formObject = Object.fromEntries(formData);
+
+    // get Id
+    const id = params.id;
 
     // get token
     const { token } = store.getState().user.user;
 
     try {
-      await customFetch.post("/jobs", formObject, {
+      await customFetch.patch(`/jobs/${id}`, formObject, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -24,13 +27,13 @@ export const action =
       queryClient.removeQueries({ queryKey: ["stats"] });
       queryClient.removeQueries({ queryKey: ["allJobs"] });
 
-      toast.success("Job created", {
+      toast.success("Job updated", {
         icon: "😎",
       });
 
       return redirect("/all-jobs");
     } catch (error) {
-      // console.log(error);
+      console.log(error);
       const errorMessage = error?.response?.data?.msg || "There was an error";
       toast.error(errorMessage, {
         icon: "😵",
@@ -45,10 +48,9 @@ export const action =
     }
   };
 
-const AddJobFilter = () => {
-  const { position, company, jobTypeOptions, jobType, statusOptions, status } =
-    useSelector((store) => store.job);
-  const { location } = useSelector((store) => store.user.user);
+const EditJobFilter = () => {
+  const { job } = useLoaderData();
+  const { jobTypeOptions, statusOptions } = useSelector((store) => store.job);
 
   return (
     <Form
@@ -60,40 +62,43 @@ const AddJobFilter = () => {
         type="text"
         name="position"
         size="input-sm"
-        defaultValue={position}
+        defaultValue={job.position}
       />
       <FormInput
         label="company"
         type="text"
         name="company"
         size="input-sm"
-        defaultValue={company}
+        defaultValue={job.company}
       />
       <FormInput
         label="job location"
         type="text"
         name="jobLocation"
         size="input-sm"
-        defaultValue={location}
+        defaultValue={job.jobLocation}
       />
       <FormSelect
         label="job type"
         name="jobType"
         list={jobTypeOptions}
-        defaultValue={jobType}
+        defaultValue={job.jobType}
         size="select-sm"
       />
       <FormSelect
         label="status"
         name="status"
         list={statusOptions}
-        defaultValue={status}
+        defaultValue={job.status}
         size="select-sm"
       />
       {/* buttons */}
       <div className="mt-4 grid grid-cols-2 gap-x-4">
         {/* refresh the current page & reset input */}
-        <NavLink to="/add-job" className="btn btn-block btn-sm btn-neutral">
+        <NavLink
+          to={`/edit-job/${job._id}`}
+          className="btn btn-block btn-sm btn-neutral"
+        >
           reset
         </NavLink>
         <SubmitBtn text="submit" size="btn-sm" />
@@ -102,4 +107,4 @@ const AddJobFilter = () => {
   );
 };
 
-export default AddJobFilter;
+export default EditJobFilter;
