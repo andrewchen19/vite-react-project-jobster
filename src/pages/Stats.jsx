@@ -19,9 +19,6 @@ export const loader = (store, queryClient) => async () => {
 
   // restrict access
   if (!user) {
-    toast.warning("Please log in first", {
-      icon: "😵",
-    });
     return redirect("/landing");
   }
 
