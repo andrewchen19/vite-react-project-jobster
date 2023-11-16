@@ -9,7 +9,7 @@ import dayjs from "dayjs";
 
 const AllJobsGrid = () => {
   const { jobs } = useLoaderData();
-  // console.log(jobs);
+  console.log(jobs);
 
   const { token } = useSelector((store) => store.user.user);
   const navigate = useNavigate();

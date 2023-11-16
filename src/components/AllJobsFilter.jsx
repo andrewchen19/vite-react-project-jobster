@@ -54,6 +54,7 @@ export const loader =
       // console.log(response);
 
       store.dispatch(getAllJobs(response.data));
+      console.log(response.data);
 
       return {
         jobs: response.data.jobs,
@@ -81,7 +82,7 @@ const AllJobsFilter = () => {
   const { sortOptions } = useSelector((store) => store.allJobs);
   const { statusOptions, jobTypeOptions } = useSelector((store) => store.job);
   const { params } = useLoaderData();
-  // console.log(params);
+  console.log(params);
 
   return (
     <div className="bg-gray-100 py-8 px-6">

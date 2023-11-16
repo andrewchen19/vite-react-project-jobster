@@ -5,6 +5,6 @@
 /* Custom class */
 @layer components {
   .align-element {
-    @apply mx-auto w-[90vw] lg:w-[95vw] max-w-7xl px-8;
+    @apply mx-auto w-[90%] max-w-7xl px-8;
   }
 }

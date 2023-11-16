@@ -16,7 +16,7 @@ const Navbar = () => {
 
   return (
     <nav className="bg-gray-50">
-      <div className="mx-auto w-[90%] py-2 flex justify-between items-center">
+      <div className="align-element px-0 py-2 flex justify-between items-center">
         {/* toggle */}
         <button
           className="btn bg-transparent border-transparent hover:bg-transparent  hover:border-transparent hover:scale-110"

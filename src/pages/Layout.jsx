@@ -11,6 +11,7 @@ const Layout = () => {
       <main className="grid lg:grid-cols-[auto,1fr]">
         <SmallSidebar />
         <BigSidebar />
+
         <div>
           <Navbar />
           <div className="align-element py-12">
